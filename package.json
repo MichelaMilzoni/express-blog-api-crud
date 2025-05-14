@@ -1,0 +1,17 @@
+{
+  "name": "express-blog-api-crud",
+  "version": "1.0.0",
+  "description": "crud parte 1",
+  "keywords": [
+    "crud"
+  ],
+  "license": "ISC",
+  "author": "Michela Milzoni",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start" : "node app.js",
+    "dev" : "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
