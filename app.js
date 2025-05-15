@@ -6,11 +6,11 @@ const postsRouter = require('./router/posts');
 // inizializzazione
 const app = express();
 
-// Middleware per il parsing del body delle richieste
-app.use(express.json());
+// Middleware
+app.use(express.json()); //* body parsers middleware
+app.use(express.urlencoded()); //* body parsers form-data
+app.use("/imgs", express.static("data/imgs")); //* static assets
 
-// Servire file statici dalla cartella data/imgs con il prefisso /imgs
-app.use("/imgs", express.static("data/imgs"));
 
 // Registrare il router dei post
 app.use("/posts", postsRouter);
