@@ -62,6 +62,21 @@ const show = (req, res) => {
 };
 
 const store = (req, res) => {
+    // creo un nuovo id incrementando l'ultimo presente
+    const newId = postsData[postsData.length - 1].id + 1;
+
+    // creo un nuovo oggetto posts
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    // aggiungo il nuovo post all'array postsData
+    postsData.push(newPost);
+    
     console.log('Dati ricevuti:', req.body);
     res.status(201).send({ message: 'Post creato!', data: req.body });
 };
