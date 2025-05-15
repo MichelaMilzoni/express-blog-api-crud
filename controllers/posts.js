@@ -62,9 +62,8 @@ const show = (req, res) => {
 };
 
 const store = (req, res) => {
-    res.json({
-        message: "creo un nuovo elemento",
-    });
+    console.log('Dati ricevuti:', req.body);
+    res.status(201).send({ message: 'Post creato!', data: req.body });
 };
 
 const update = (req, res) => {

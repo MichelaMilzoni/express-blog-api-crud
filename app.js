@@ -2,13 +2,14 @@
 const express = require('express');
 const appUrl = require('./data/config');
 const postsRouter = require('./router/posts');
+const bodyParser = require('body-parser')
 
 // inizializzazione
 const app = express();
 
 // Middleware
 app.use(express.json()); //* body parsers middleware
-app.use(express.urlencoded()); //* body parsers form-data
+app.use(express.urlencoded({ extended: true })); //* body parsers form-data
 app.use("/imgs", express.static("data/imgs")); //* static assets
 
 
