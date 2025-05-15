@@ -74,16 +74,51 @@ const store = (req, res) => {
         tags: req.body.tags
     }
 
+    // controllo se tutti i campi sono stati compilati
+    if (!req.body.title || !req.body.content) {
+    return res.status(400).json({
+        error: "Dati mancanti",
+        message: "Il titolo e il contenuto sono obbligatori!"
+    });
+}
+
     // aggiungo il nuovo post all'array postsData
     postsData.push(newPost);
-    
-    console.log('Dati ricevuti:', req.body);
-    res.status(201).send({ message: 'Post creato!', data: req.body });
+
+    res.status(201).json({
+    message: "Post creato con successo!",
+    data: newPost
+});
 };
 
 const update = (req, res) => {
+    // Recupero l'ID dall'URL e lo converto in numero
+    const id = parseInt(req.params.id);
+
+    // Trovo il post da aggiornare
+    const postIndex = postsData.findIndex(post => post.id === id);
+
+    // Se il post non esiste, restituisco errore 404
+    if (postIndex === -1) {
+        return res.status(404).json({
+            error: "404 - Not Found",
+            message: `Nessun post trovato con ID ${id}`
+        });
+    }
+
+    // Aggiorno i campi del post con i nuovi dati ricevuti
+    postsData[postIndex] = {
+        id: post.id,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    };
+
+    // Restituisco la risposta con il post aggiornato
     res.json({
-        message: "sostituisco/modifico interamento un post",
+        message: "Post aggiornato con successo!",
+        data: postsData[postIndex]
     });
 };
 
